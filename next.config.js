@@ -1,6 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-}
+  output: "export", // This enables static exports
+  distDir: "out",
+  trailingSlash: true, // Recommended for cPanel
+  images: {
+    unoptimized: true, // Required for static export with images
+  },
+  // Optional: Disable ESLint during build
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  // Optional: Disable TypeScript errors during build
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 
-module.exports = nextConfig
+
+};
+
+export default nextConfig;

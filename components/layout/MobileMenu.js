@@ -49,13 +49,13 @@ export default function MobileMenu({ handleMobileMenu, isMobileMenu }) {
                             </div>
                         </div>
                         <div className="mobile-header-info-wrap">
-                            <div className="single-mobile-header-info">
+                            {/* <div className="single-mobile-header-info">
                                 <Link href="tel:9806071234" className="cnt">
                                     <i className="fi-rs-headphones" />9806071234 </Link>
-                            </div>
+                            </div> */}
                             <div className="single-mobile-header-info cont_over">
-                                <Link href="mailto:sendmail@example.com" className="cnt">
-                                    <i className="fi-rs-envelope" />sendmail@example.com </Link>
+                                <Link href="mailto:info@ciencechip.com" className="cnt">
+                                    <i className="fi-rs-envelope" />info@ciencechip.com </Link>
                             </div>
                             <div className="single-mobile-header-info">
                                 <Link href="#" className="theme_btn tp_one">Contact</Link>
