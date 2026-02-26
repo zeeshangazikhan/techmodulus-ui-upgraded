@@ -103,13 +103,13 @@ export default function OptionalPanel({ isOptionalPanel, handleOptionalPanel }) 
                             </div>
                             <h2 className="title_no_a_28"> Need Any Help? Or Looking For an Agent</h2>
                             <div className="contact_panel">
-                                <div className="c_pan">
+                                {/* <div className="c_pan">
                                     <Link href="tel:9806071234">
                                         <i className="fi-rr-phone-call" /> 9806071234 </Link>
-                                </div>
+                                </div> */}
                                 <div className="c_pan">
-                                    <Link href="mailto:sendmail@example.com">
-                                        <i className="fi-rr-envelope" /> sendmail@example.com </Link>
+                                    <Link href="mailto:info@ciencechip.com">
+                                        <i className="fi-rr-envelope" /> info@ciencechip.com </Link>
                                 </div>
                                 <div className="c_pan">
                                     <a className="wk_hours">
