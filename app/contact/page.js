@@ -2,7 +2,30 @@
 
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
+import { useState } from "react"
+import { sendContactEnquiry } from "@/util/sendContact"
 export default function Contact() {
+
+    const [contactForm, setContactForm] = useState({ name: '', email: '', subject: '', message: '' })
+    const [contactStatus, setContactStatus] = useState({ sending: false, sent: false, error: '' })
+
+    const onContactChange = (e) => {
+        setContactForm({ ...contactForm, [e.target.name]: e.target.value })
+    }
+
+    const onContactSubmit = async (e) => {
+        e.preventDefault()
+        if (contactStatus.sending) return
+        setContactStatus({ sending: true, sent: false, error: '' })
+        const result = await sendContactEnquiry({ ...contactForm, service: 'Contact Page' })
+        if (!result.ok) {
+            setContactStatus({ sending: false, sent: false, error: result.error })
+            return
+        }
+        setContactStatus({ sending: false, sent: true, error: '' })
+        setContactForm({ name: '', email: '', subject: '', message: '' })
+        setTimeout(() => setContactStatus((s) => ({ ...s, sent: false })), 6000)
+    }
 
     return (
         <>
@@ -121,36 +144,49 @@ export default function Contact() {
                             <div className="col-lg-8 col-md-12">
                                 <section className="contact_form_box_all">
                                     <div className="contact_form_shortcode">
-                                        <form id="contact-form" method="post" action="contact.php" role="form">
-                                            <div className="messages" />
+                                        <form id="contact-form" onSubmit={onContactSubmit} role="form" noValidate>
+                                            <div className="messages">
+                                                {contactStatus.sent && (
+                                                    <div style={{ background: 'linear-gradient(135deg,#0F3567,#008BF9)', color: '#fff', padding: '14px 18px', borderRadius: 10, marginBottom: 16, fontWeight: 600 }}>
+                                                        Thanks! Your message has been sent — we&rsquo;ll be in touch shortly.
+                                                    </div>
+                                                )}
+                                                {contactStatus.error && (
+                                                    <div style={{ background: '#fff1f0', color: '#b00020', padding: '12px 16px', borderRadius: 10, marginBottom: 16, border: '1px solid #ffd0cc' }}>
+                                                        {contactStatus.error}
+                                                    </div>
+                                                )}
+                                            </div>
                                             <div className="controls">
                                                 <div className="row">
                                                     <div className="col-md-6 col-sm-12">
                                                         <div className="form-group">
-                                                            <input type="text" name="name" placeholder="Your Name *" required="required" data-error="Enter Your Name" />
+                                                            <input type="text" name="name" placeholder="Your Name *" required value={contactForm.name} onChange={onContactChange} />
                                                             <div className="help-block with-errors" />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6 col-sm-12">
                                                         <div className="form-group">
-                                                            <input type="text" name="email" required="required" placeholder="Email *" data-error="Enter Your Email Id" />
+                                                            <input type="email" name="email" required placeholder="Email *" value={contactForm.email} onChange={onContactChange} />
                                                             <div className="help-block with-errors" />
                                                         </div>
                                                     </div>
                                                     <div className="col-sm-12">
                                                         <div className="form-group">
-                                                            <input type="text" name="subject" required="required" placeholder=" Subject  (Optional)" />
+                                                            <input type="text" name="subject" placeholder=" Subject  (Optional)" value={contactForm.subject} onChange={onContactChange} />
                                                         </div>
                                                     </div>
                                                     <div className="col-sm-12">
                                                         <div className="form-group">
-                                                            <textarea name="message" placeholder="Additional Information... (Optional) " rows={3} required="required" data-error="Please, leave us a message." />
+                                                            <textarea name="message" placeholder="Additional Information... (Optional) " rows={3} value={contactForm.message} onChange={onContactChange} />
                                                             <div className="help-block with-errors" />
                                                         </div>
                                                     </div>
                                                     <div className="col-sm-12">
                                                         <div className="form-group mg_top apbtn">
-                                                            <button className="theme_btn" type="submit">Send Message</button>
+                                                            <button className="theme_btn" type="submit" disabled={contactStatus.sending}>
+                                                                {contactStatus.sending ? 'Sending…' : 'Send Message'}
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>

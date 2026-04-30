@@ -36,6 +36,17 @@ export default function Reveal({
             return
         }
 
+        // Reduced motion or very small viewport: just show immediately
+        const prefersReduced =
+            window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        if (prefersReduced) {
+            el.classList.add('is-revealed')
+            return
+        }
+
+        const isMobile = window.innerWidth <= 768
+
         const io = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -47,11 +58,28 @@ export default function Reveal({
                     }
                 })
             },
-            { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+            // Mobile: trigger as soon as any pixel enters viewport with positive margin
+            // Desktop: keep the slightly delayed reveal
+            isMobile
+                ? { threshold: 0.01, rootMargin: '0px 0px 0px 0px' }
+                : { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
         )
 
         io.observe(el)
-        return () => io.disconnect()
+
+        // SAFETY FAILSAFE: if for any reason IO never fires (layout shift, hidden parent,
+        // image load delays, etc.) force-reveal after a short delay so content never stays blank.
+        const failsafe = window.setTimeout(() => {
+            if (!el.classList.contains('is-revealed')) {
+                el.classList.add('is-revealed')
+                io.disconnect()
+            }
+        }, isMobile ? 1200 : 2500)
+
+        return () => {
+            io.disconnect()
+            window.clearTimeout(failsafe)
+        }
     }, [once])
 
     const style = {

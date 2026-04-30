@@ -1,5 +1,7 @@
 'use client'
 
+import { sendContactEnquiry } from "@/util/sendContact"
+
 import Link from "next/link"
 import StickyHeader from "@/components/layout/StickyHeader"
 import Footer4 from "@/components/layout/footer/Footer4"

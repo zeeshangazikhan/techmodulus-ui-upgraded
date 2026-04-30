@@ -3,10 +3,27 @@
 import Layout from "@/components/layout/Layout"
 import dynamic from 'next/dynamic'
 import Link from "next/link"
+import { useState } from "react"
+import { sendContactEnquiry } from "@/util/sendContact"
 const CounterUp = dynamic(() => import('@/components/elements/CounterUp'), {
     ssr: false,
 })
 export default function TeamDetails() {
+
+    const [tdForm, setTdForm] = useState({ name: '', mobile: '', email: '', message: '' })
+    const [tdStatus, setTdStatus] = useState({ sending: false, sent: false, error: '' })
+
+    const onTdChange = (e) => setTdForm({ ...tdForm, [e.target.name]: e.target.value })
+    const onTdSubmit = async (e) => {
+        e.preventDefault()
+        if (tdStatus.sending) return
+        setTdStatus({ sending: true, sent: false, error: '' })
+        const result = await sendContactEnquiry({ ...tdForm, service: 'Team Page Enquiry' })
+        if (!result.ok) { setTdStatus({ sending: false, sent: false, error: result.error }); return }
+        setTdStatus({ sending: false, sent: true, error: '' })
+        setTdForm({ name: '', mobile: '', email: '', message: '' })
+        setTimeout(() => setTdStatus((s) => ({ ...s, sent: false })), 6000)
+    }
 
     return (
         <>
@@ -231,22 +248,34 @@ export default function TeamDetails() {
                             <div className="col-lg-8 col-md-12">
                                 <section className="contact_form_box_all">
                                     <div className="contact_form_shortcode">
-                                        <form method="post" action="#">
+                                        <form onSubmit={onTdSubmit} noValidate>
+                                            {tdStatus.sent && (
+                                                <div style={{ background: 'linear-gradient(135deg,#0F3567,#008BF9)', color: '#fff', padding: '12px 16px', borderRadius: 10, marginBottom: 14, fontWeight: 600 }}>
+                                                    Thanks! Your message has been sent.
+                                                </div>
+                                            )}
+                                            {tdStatus.error && (
+                                                <div style={{ background: '#fff1f0', color: '#b00020', padding: '10px 14px', borderRadius: 10, marginBottom: 14, border: '1px solid #ffd0cc' }}>
+                                                    {tdStatus.error}
+                                                </div>
+                                            )}
                                             <div className="row">
                                                 <div className="col-lg-6 col-md-6 col-sm-12 mr_bottom_15">
-                                                    <input type="text" name="full-name" placeholder="Full Name" required />
+                                                    <input type="text" name="name" placeholder="Full Name" required value={tdForm.name} onChange={onTdChange} />
                                                 </div>
                                                 <div className="col-lg-6 col-md-6 col-sm-12 mr_bottom_15">
-                                                    <input type="text" name="Phone" placeholder="Phone" />
+                                                    <input type="text" name="mobile" placeholder="Phone" value={tdForm.mobile} onChange={onTdChange} />
                                                 </div>
                                                 <div className="col-sm-12 mr_bottom_15">
-                                                    <input type="email" name="email" placeholder="Email Address" required />
+                                                    <input type="email" name="email" placeholder="Email Address" required value={tdForm.email} onChange={onTdChange} />
                                                 </div>
                                                 <div className="col-sm-12 mr_bottom_15">
-                                                    <textarea name="message" placeholder="Message" maxLength={3} />
+                                                    <textarea name="message" placeholder="Message" rows={4} value={tdForm.message} onChange={onTdChange} />
                                                 </div>
                                                 <div className="col-sm-12">
-                                                    <button type="submit">Send Message</button>
+                                                    <button type="submit" disabled={tdStatus.sending}>
+                                                        {tdStatus.sending ? 'Sending…' : 'Send Message'}
+                                                    </button>
                                                 </div>
                                             </div>
                                         </form>

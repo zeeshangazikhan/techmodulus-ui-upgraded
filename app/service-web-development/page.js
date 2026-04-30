@@ -1,5 +1,7 @@
 'use client'
 
+import { sendContactEnquiry } from "@/util/sendContact"
+
 import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
 import StickyHeader from "@/components/layout/StickyHeader"
@@ -25,8 +27,13 @@ export default function ServiceWebDevelopment() {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault()
+        const result = await sendContactEnquiry({ ...formData, service: formData.service || 'Web Development' })
+        if (!result.ok) {
+            if (typeof window !== 'undefined') window.alert(result.error)
+            return
+        }
         setFormSubmitted(true)
         setTimeout(() => setFormSubmitted(false), 4000)
         setFormData({ name: '', email: '', mobile: '', service: 'Web Development', message: '' })

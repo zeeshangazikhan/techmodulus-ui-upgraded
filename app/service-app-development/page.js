@@ -1,5 +1,7 @@
 'use client'
 
+import { sendContactEnquiry } from "@/util/sendContact"
+
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import StickyHeader from "@/components/layout/StickyHeader"
@@ -45,14 +47,16 @@ export default function ServiceAppDevelopment() {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault()
-        console.log('Form submitted:', formData)
+        const result = await sendContactEnquiry({ ...formData, service: formData.service || 'App Development' })
+        if (!result.ok) {
+            if (typeof window !== 'undefined') window.alert(result.error)
+            return
+        }
         setFormSubmitted(true)
-        setTimeout(() => {
-            setFormSubmitted(false)
-            setFormData({ name: '', email: '', mobile: '', service: 'App Development', message: '' })
-        }, 3000)
+        setTimeout(() => setFormSubmitted(false), 4000)
+        setFormData({ name: '', email: '', mobile: '', service: 'App Development', message: '' })
     }
 
     const capabilities = [
