@@ -254,13 +254,13 @@ export default function Slider5() {
                     inset: 0;
                     background:
                         radial-gradient(80% 60% at 50% 50%,
-                            rgba(15, 53, 103, .25) 0%,
-                            rgba(15, 53, 103, .4) 60%,
-                            rgba(8, 37, 75, .55) 100%),
+                            rgba(15, 53, 103, .45) 0%,
+                            rgba(15, 53, 103, .62) 60%,
+                            rgba(8, 37, 75, .78) 100%),
                         linear-gradient(180deg,
-                            rgba(8, 37, 75, .25) 0%,
-                            rgba(15, 53, 103, .25) 35%,
-                            rgba(8, 37, 75, .65) 100%);
+                            rgba(8, 37, 75, .42) 0%,
+                            rgba(15, 53, 103, .48) 35%,
+                            rgba(8, 37, 75, .82) 100%);
                 }
                 /* Soft dark gradient behind copy block — boosts contrast on busy hero photos */
                 .cc-slider__inner::before {
@@ -602,9 +602,9 @@ export default function Slider5() {
                     .cc-slider__overlay {
                         background:
                             radial-gradient(140% 90% at 30% 20%,
-                                rgba(6, 8, 20, 0) 0%,
-                                rgba(6, 8, 20, .55) 60%,
-                                rgba(6, 8, 20, .95) 100%);
+                                rgba(6, 8, 20, .15) 0%,
+                                rgba(6, 8, 20, .72) 60%,
+                                rgba(6, 8, 20, .97) 100%);
                     }
                     .cc-slider__title {
                         font-size: clamp(1.6rem, 7vw, 2.8rem);
@@ -624,7 +624,7 @@ export default function Slider5() {
                     .cc-slider__btn {
                         padding: 13px 22px;
                         font-size: .82rem;
-                        flex: 1 1 auto;
+                        flex: 0 0 auto;
                         justify-content: center;
                         min-height: 48px;
                     }
