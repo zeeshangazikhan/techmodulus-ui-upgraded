@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react"
 import ModalVideo from 'react-modal-video'
 import "../../node_modules/react-modal-video/css/modal-video.css"
@@ -16,3 +18,4 @@ export default function VideoBox({ videoId = "11THdF_ZDc4" }) {
         </>
     )
 }
+

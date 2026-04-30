@@ -1,3 +1,5 @@
+'use client'
+
 export default function WhatsAppFloat() {
     const phoneNumber = "918329042454"; // WhatsApp number in international format without + or spaces
     const message = "Hello! I'd like to inquire about your services.";

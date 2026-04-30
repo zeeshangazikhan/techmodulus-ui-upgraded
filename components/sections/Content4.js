@@ -1,3 +1,5 @@
+'use client'
+
 import dynamic from 'next/dynamic'
 import Link from "next/link"
 import { useState } from "react"
@@ -198,3 +200,4 @@ export default function Content4() {
         </>
     )
 }
+

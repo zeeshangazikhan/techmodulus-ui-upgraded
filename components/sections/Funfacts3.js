@@ -1,3 +1,5 @@
+'use client'
+
 import dynamic from 'next/dynamic'
 import VideoBox from "../elements/VideoBox"
 const CounterUp = dynamic(() => import('../elements/CounterUp'), {

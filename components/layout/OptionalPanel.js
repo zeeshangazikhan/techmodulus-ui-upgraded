@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import { Autoplay, Navigation, Pagination } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -108,8 +110,8 @@ export default function OptionalPanel({ isOptionalPanel, handleOptionalPanel }) 
                                         <i className="fi-rr-phone-call" /> 9806071234 </Link>
                                 </div> */}
                                 <div className="c_pan">
-                                    <Link href="mailto:info@ciencechip.com">
-                                        <i className="fi-rr-envelope" /> info@ciencechip.com </Link>
+                                    <Link href="mailto:info@TechModulus.com">
+                                        <i className="fi-rr-envelope" /> info@TechModulus.com </Link>
                                 </div>
                                 <div className="c_pan">
                                     <a className="wk_hours">

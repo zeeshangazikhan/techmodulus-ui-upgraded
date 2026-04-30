@@ -1,3 +1,5 @@
+'use client'
+
 
 import { useEffect, useState } from "react"
 import data from "../../util/blog.json"
@@ -81,3 +83,4 @@ export default function BlogPost({ style, showItem, showPagination }) {
         </>
     )
 }
+

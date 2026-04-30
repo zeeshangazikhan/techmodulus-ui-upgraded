@@ -1,3 +1,5 @@
+'use client'
+
 
 import Link from 'next/link'
 import { useCallback, useEffect, useRef, useState } from "react"
@@ -255,3 +257,4 @@ export default function PortfolioStyle2() {
         </>
     )
 }
+

@@ -1,3 +1,5 @@
+'use client'
+
 // import PortfolioFilter from "../elements/PortfolioFilter"
 import dynamic from 'next/dynamic'
 const PortfolioFilter1 = dynamic(() => import('../elements/PortfolioFilter1'), {

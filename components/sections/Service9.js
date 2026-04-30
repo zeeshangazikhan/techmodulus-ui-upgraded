@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import { Briefcase, TrendingUp, Zap } from "lucide-react"
 
@@ -20,7 +22,7 @@ export default function Service9() {
                             </div>
                         </div>
                         <div className="col-lg-6">
-                            <p className="color_white mr_bottom_10">CienceChip builds custom web, desktop, and mobile
+                            <p className="color_white mr_bottom_10">TechModulus builds custom web, desktop, and mobile
                                 <br />applications focused on usability, performance,
                                 and enterprise-grade security for every deployment.</p>
                         </div>

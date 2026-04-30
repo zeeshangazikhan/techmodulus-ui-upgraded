@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import { Palette, Globe, Smartphone, TrendingUp, Server, Share2, Cpu, Archive, Briefcase, Box } from "lucide-react"
 

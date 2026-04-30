@@ -1,4 +1,4 @@
-export const portfolioProjects = [
+﻿export const portfolioProjects = [
     {
         id: 1,
         slug: 'tehzeeb',

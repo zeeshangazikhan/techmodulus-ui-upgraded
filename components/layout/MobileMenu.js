@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 export default function MobileMenu({ handleMobileMenu, isMobileMenu }) {
 
@@ -31,11 +33,6 @@ export default function MobileMenu({ handleMobileMenu, isMobileMenu }) {
                                         </Link>
                                     </li>
                                     <li className="menu-item nav-item">
-                                        <Link href="/portfolio-style-1" className="nav_link">
-                                            <span className="text-link">Our Works</span>
-                                        </Link>
-                                    </li>
-                                    <li className="menu-item nav-item">
                                         <Link href="/about-us" className="nav_link">
                                             <span className="text-link">About Us</span>
                                         </Link>
@@ -54,14 +51,14 @@ export default function MobileMenu({ handleMobileMenu, isMobileMenu }) {
                                     <i className="fi-rs-headphones" />9806071234 </Link>
                             </div> */}
                             <div className="single-mobile-header-info cont_over">
-                                <Link href="mailto:info@ciencechip.com" className="cnt">
-                                    <i className="fi-rs-envelope" />info@ciencechip.com </Link>
+                                <Link href="mailto:info@TechModulus.com" className="cnt">
+                                    <i className="fi-rs-envelope" />info@TechModulus.com </Link>
                             </div>
                             <div className="single-mobile-header-info">
-                                <Link href="#" className="theme_btn tp_one">Contact</Link>
+                                <Link href="/contact" className="theme_btn tp_one" onClick={handleMobileMenu}>Contact Us</Link>
                             </div>
                             <div className="single-mobile-header-info">
-                                <Link href="#" className="theme_btn">Service</Link>
+                                <Link href="/service" className="theme_btn" onClick={handleMobileMenu}>Our Solutions</Link>
                             </div>
                         </div>
                     </nav>

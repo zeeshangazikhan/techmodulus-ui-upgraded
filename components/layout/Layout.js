@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from "react"
 import BackToTop from '../elements/BackToTop'
 import Breadcrumb from './Breadcrumb'
@@ -5,12 +7,7 @@ import MobileMenu from "./MobileMenu"
 import OptionalPanel from "./OptionalPanel"
 import SearchPopup from "./SearchPopup"
 import StickyHeader from "./StickyHeader"
-import Footer1 from './footer/Footer1'
-import Footer2 from "./footer/Footer2"
-import Footer3 from "./footer/Footer3"
 import Footer4 from "./footer/Footer4"
-import Footer5 from "./footer/Footer5"
-import Footer6 from "./footer/Footer6"
 import Header1 from './header/Header1'
 import Header2 from "./header/Header2"
 import Header3 from "./header/Header3"
@@ -61,12 +58,7 @@ export default function Layout({ headerStyle, footerStyle, pageCls, breadcrumbTi
                     <div id="content" className="site-content">
                         {children}
                     </div>
-                    {footerStyle == 1 ? < Footer1 /> : null}
-                    {footerStyle == 2 ? < Footer2 /> : null}
-                    {footerStyle == 3 ? < Footer3 /> : null}
-                    {footerStyle == 4 ? < Footer4 /> : null}
-                    {footerStyle == 5 ? < Footer5 /> : null}
-                    {footerStyle == 6 ? < Footer6 /> : null}
+                    <Footer4 />
                 </div>
                 <MobileMenu isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} />
                 <SearchPopup isSearch={isSearch} handleSearch={handleSearch} />
@@ -76,3 +68,4 @@ export default function Layout({ headerStyle, footerStyle, pageCls, breadcrumbTi
         </>
     )
 }
+

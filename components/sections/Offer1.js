@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import { Autoplay, Navigation, Pagination } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"

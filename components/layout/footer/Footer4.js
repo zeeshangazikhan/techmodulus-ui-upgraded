@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 
 export default function Footer4({ }) {
@@ -14,7 +16,7 @@ export default function Footer4({ }) {
                                 <h4 className="sm_title">Contact Us</h4>
                                 <h2 className="title">
                                     Start Your Software Project
-                                    with CienceChip
+                                    with TechModulus
                                 </h2>
                             </div>
                         </div>
@@ -23,15 +25,7 @@ export default function Footer4({ }) {
                                 Start a Project <span> <i className=" fi-rr-arrow-small-up" /></span>
                             </Link>
                         </div>
-                        <div className="d-flex align-items-center contact_header_one">
-                            <div className="icon_s">
-                                <i className=" fi-rr-headphones" />
-                            </div>
-                            <div className="content">
-                                <h6 className="tite">Talk to an Expert</h6>
-                                <div className="title_20"><Link href="/contact">Contact Us</Link></div>
-                            </div>
-                        </div>
+
                     </div>
                 </section>
                 {/*-============spacing==========-*/}
@@ -102,7 +96,7 @@ export default function Footer4({ }) {
                             </div>
                                 <div className="col-lg-7 text-md-end">
                                 <div className="position-relative color_white">
-                                    Copyright {new Date().getFullYear()}, CienceChip. All Rights Reserved</div>
+                                    Copyright {new Date().getFullYear()}, TechModulus. All Rights Reserved</div>
                             </div>
                         </div>
                     </div>

@@ -1,3 +1,5 @@
+'use client'
+
 
 export default function SearchPopup({ isSearch, handleSearch, handleOptionalPanel }) {
     return (

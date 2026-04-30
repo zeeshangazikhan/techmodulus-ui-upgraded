@@ -1,3 +1,5 @@
+'use client'
+
 import dynamic from 'next/dynamic'
 import Link from "next/link"
 const CounterUp = dynamic(() => import('../elements/CounterUp'), {

@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import { useState } from "react"
 import NavbarNav from "../NavbarNav"
@@ -217,3 +219,4 @@ export default function Header3({ handleSearch, handleOptionalPanel, handleMobil
         </>
     )
 }
+

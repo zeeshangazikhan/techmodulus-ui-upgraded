@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 const PortfolioFilterStyle1 = dynamic(() => import('../elements/PortfolioFilterStyle1'), {

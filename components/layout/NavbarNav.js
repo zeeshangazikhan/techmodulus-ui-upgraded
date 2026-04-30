@@ -1,37 +1,33 @@
+'use client'
+
 import Link from "next/link"
+import { usePathname } from "next/navigation"
+
+const LINKS = [
+    { href: '/',                label: 'Home' },
+    { href: '/service',         label: 'Solutions',   matchPrefix: '/service' },
+    { href: '/portfolio-style-1', label: 'Case Studies', matchPrefix: '/portfolio' },
+    { href: '/about-us',        label: 'Who We Are',  matchPrefix: '/about' },
+]
 
 export default function NavbarNav() {
+    const pathname = usePathname()
+
+    const isActive = (link) => {
+        if (link.href === '/') return pathname === '/'
+        if (link.matchPrefix) return pathname.startsWith(link.matchPrefix)
+        return pathname === link.href
+    }
 
     return (
-        <>
-
-            <ul className="navbar_nav">
-                <li className="menu-item nav-item">
-                    <Link href="/" className="nav_link">
-                        <span className="text-link">Home</span>
+        <ul className="navbar_nav">
+            {LINKS.map(link => (
+                <li key={link.href} className={`menu-item nav-item${isActive(link) ? ' is-active' : ''}`}>
+                    <Link href={link.href} className={`nav_link${isActive(link) ? ' nav_link--active' : ''}`}>
+                        <span className="text-link">{link.label}</span>
                     </Link>
                 </li>
-                <li className="menu-item nav-item">
-                    <Link href="/service" className="nav_link">
-                        <span className="text-link">Solutions</span>
-                    </Link>
-                </li>
-                <li className="menu-item nav-item">
-                    <Link href="/portfolio-style-1" className="nav_link">
-                        <span className="text-link">Case Studies</span>
-                    </Link>
-                </li>
-                <li className="menu-item nav-item">
-                    <Link href="/about-us" className="nav_link">
-                        <span className="text-link">Who We Are</span>
-                    </Link>
-                </li>
-                <li className="menu-item nav-item">
-                    <Link href="/contact" className="nav_link">
-                        <span className="text-link">Get In Touch</span>
-                    </Link>
-                </li>
-            </ul>
-        </>
+            ))}
+        </ul>
     )
 }
